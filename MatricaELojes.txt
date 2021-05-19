@@ -1,0 +1,114 @@
+import javax.swing.*;
+
+public class MatricaELojes {
+
+/*
+
+The class MatricaELojes defines the rules of the game, by finding so the winner of the game based on those rules of Tic-Tac-Toe game
+
+ */
+private TicTacToeBoard tttBoard;
+private int matricaLoja[][];
+private boolean radha;
+private JButton i_shtypur;
+
+public MatricaELojes(TicTacToeBoard B) {
+
+	matricaLoja = new int[3][3];
+
+	tttBoard = B;
+ // vendosja fillesatare e vlerave ne matrice me te gjitha elementet zero
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+        	matricaLoja[i][j] = 0;
+        }
+    }
+
+}
+
+public void inicializuesiIVargut(int i, int j, int shenjuesi) {
+
+    // adds the data sent from Action listener to the board of the game "TicTacToeBoard"
+    matricaLoja[i][j] = shenjuesi;
+    kontrolloNeseKaFitues(shenjuesi);
+}
+
+
+public void kontrolloNeseKaFitues(int shenjuesi) {
+
+	// if any specific index of the array has same value with the shenjuesin(marker)
+	// if index = 1 and shenjuesi = 1 than declare the winner 
+	// the same is done with shenjuesin(marker) 2 
+	boolean matricaELojesEshtePlot = true;
+	boolean skaFitues = true;
+	for(int i =0; i< 3; i++) {
+		for(int j = 0; j < 3; j++ )
+		{
+			if(matricaLoja[i][j] == 0) 
+			{
+				matricaELojesEshtePlot = false;
+				
+			}
+			
+		}
+	}
+	
+	// look for the winner through rows 
+    if ((matricaLoja[0][0] == shenjuesi && matricaLoja[0][1] == shenjuesi && matricaLoja[0][2] == shenjuesi) || 
+    		(matricaLoja[1][0] == shenjuesi && matricaLoja[1][1] == shenjuesi && matricaLoja[1][2] == shenjuesi) ||
+    		(matricaLoja[2][0] == shenjuesi && matricaLoja[2][1] == shenjuesi && matricaLoja[2][2] == shenjuesi)) {
+    	skaFitues = false;
+        if (shenjuesi == 1) {
+
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 1 ('X') Fitues ");
+
+        } 
+        else if (shenjuesi == 2) {
+
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 2 ('O') Fitues ");
+
+        }
+
+        tttBoard.CaktivizoTeGjitha(false);
+
+    } 
+       // look for the winner through cols 
+    else if ((matricaLoja[0][0] == shenjuesi && matricaLoja[1][0] == shenjuesi && matricaLoja[2][0] == shenjuesi) || 
+    		(matricaLoja[0][1] == shenjuesi && matricaLoja[1][1] == shenjuesi && matricaLoja[2][1] == shenjuesi) || 
+    		(matricaLoja[0][2] == shenjuesi && matricaLoja[1][2] == shenjuesi && matricaLoja[2][2] == shenjuesi)) {
+    	skaFitues = false;
+        if (shenjuesi == 1) {
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 1 ('X') Fitues");
+
+        } else if (shenjuesi == 2) {
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 2 ('O') Fitues ");
+           
+        }
+
+        tttBoard.CaktivizoTeGjitha(false);
+
+    }
+    //  look for the winner through diagonal
+    else if ((matricaLoja[0][0] == shenjuesi && matricaLoja[1][1] == shenjuesi && matricaLoja[2][2] == shenjuesi) || 
+    		(matricaLoja[2][0] == shenjuesi && matricaLoja[1][1] == shenjuesi && matricaLoja[0][2] == shenjuesi)) {
+    	skaFitues = false;
+        if (shenjuesi == 1) {
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 1 ('X') Fitues ");
+
+        } else if (shenjuesi == 2) {
+            JOptionPane.showMessageDialog(tttBoard, " Urime: Lojtari 2 ('O') Fitues ");
+        }
+        tttBoard.CaktivizoTeGjitha(false);
+
+    }
+    //Kontrollo nese nuk ka fitues
+    if(matricaELojesEshtePlot && skaFitues)
+    {
+        JOptionPane.showMessageDialog(tttBoard, "Loja nuk ka fitues");
+    }
+    
+    
+
+}
+
+}

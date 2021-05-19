@@ -1,0 +1,10 @@
+public class TicTacToeMain {
+
+	public static void main(String[] args) {
+
+	    // main class that starts the game
+
+	    KontrolleriILojes k = new KontrolleriILojes(); 
+
+	}
+}

@@ -1,0 +1,54 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/*
+ * This class generates Exit and Reset buttons */
+
+public class ExitResetButoni extends JPanel {
+
+private JButton Exit, Reset; // Exit and Reset button
+private TicTacToeBoard tttBoard; // TicTacToeBoard board game
+
+ public ExitResetButoni() {
+	 
+	// setting FlowLayout
+    setLayout(new FlowLayout());
+
+    Exit = new JButton("Exit");
+    Reset = new JButton("Reset");
+    ExitButoni exButon = new ExitButoni();
+    ResetButoni reButon = new ResetButoni();
+    
+    // adding actions for Exit and Reset
+    Exit.addActionListener(exButon);
+    Reset.addActionListener(reButon);
+    
+    // adding buttons on the panel
+    add(Exit);
+    add(Reset);
+}
+
+// method that adds an object into the board game of TicTacToeBoard
+public void vendosObjekt(TicTacToeBoard B) {
+
+    tttBoard = B;
+
+}
+// Exit button terminates the process of the aplication
+private class ExitButoni implements ActionListener
+{
+	public void actionPerformed(ActionEvent e)
+	{
+		System.exit(0);
+	}
+}
+// Reset button resets the game 
+private class ResetButoni implements ActionListener
+{
+	public void actionPerformed(ActionEvent e)
+	{
+		tttBoard.reset();
+	}
+}
+}
